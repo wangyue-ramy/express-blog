@@ -1,19 +1,26 @@
 <%- include header %>
-<% posts.forEach(function (post, index) { %>
-  <h2>
-  <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>
-  </h2>
-  <p class="info">
-    作者: <a href="/u/<%= post.username %>"><%= post.username %></a>
-    日期: <%= post.time.toISOString().slice(0, 10) %>
-    <% if (post.tags.length > 0) { %>
-        标签:
-    <% } %>
-    <% post.tags.forEach(function(tag, index) { %>
-        <a class="tag" href="/tag/<%= tag %>"><%= tag %></a>
+
+<div class="wrap">
+    <% posts.forEach(function (post, index) { %>
+        <div class="article">
+            <h3 class="title">
+                <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>
+            </h3>
+            <div class="info">
+                <span class="author">作者: <a href="/u/<%= post.username %>"><%= post.username %></a></span>
+                <span class="date">日期: <%= post.time.toISOString().slice(0, 10) %></span>
+                <% if (post.tags.length > 0) { %>
+                    <span class="tags">
+                        标签:
+                        <% post.tags.forEach(function(tag, index) { %>
+                            <a class="tag" href="/tag/<%= tag %>"><%= tag %></a>
+                        <% }) %>
+                    </span>
+                <% } %>
+            </div>
+        </div>
     <% }) %>
-  </p>
-  <p><%- post.text %></p>
-<% }) %>
+</div>
+
 <%- include paging %>
 <%- include footer %>

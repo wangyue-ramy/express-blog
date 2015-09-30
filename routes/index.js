@@ -111,6 +111,9 @@ router.get('/post', function(req, res) {
 router.post('/post', checkLoing);
 router.post('/post', function(req, res) {
     var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
+    if (tags == ',,') {
+        tags = null;
+    }
     var newPost = new Post({
         name: req.session.user.username,
         title: req.body.title,

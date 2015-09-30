@@ -1,0 +1,41 @@
+header {
+    box-sizing: border-box;
+    width: 66%;
+    margin: 50px auto 0;
+    padding: 30px 80px;
+    border-bottom: 1px solid #ccc;
+    h1 {
+        float: left;
+    }
+    #nav {
+        float: right;
+        height: 38px;
+        &>ul>li {
+            display: inline-block;
+            line-height: 38px;
+        }
+    }
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+.wrap {
+    .article {
+        box-sizing: border-box;
+        width: 20%;
+        height: 300px;
+        margin: 10px auto;
+        padding: 40px 0;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px 1px #6c6f5f;
+        .title,
+        .info {
+            text-align: center;
+        }
+    }
+}
