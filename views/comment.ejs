@@ -1,0 +1,19 @@
+<br>
+
+<% comments.forEach(function(comment, index) { %>
+    <p><a href="<%= comment.website %>"><%= comment.username %></a></p>
+    <p><%- comment.content %></p>
+<% }) %>
+
+<form method="post">
+    <% if (user) { %>
+        姓名: <input type="text" name="name" value="<%= user.username %>"><br>
+        邮箱: <input type="email" name="email" value="<%= user.email %>"><br>
+    <% } else { %>
+        姓名: <input type="text" name="name"><br>
+        邮箱: <input type="email" name="email"><br>
+    <% } %>
+
+    <textarea name="content" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="发表">
+</form>
