@@ -1,18 +1,23 @@
 header {
     box-sizing: border-box;
     width: 66%;
-    margin: 50px auto 0;
-    padding: 30px 80px;
+    margin: 0 auto 10px;
+    padding: 10px 80px;
     border-bottom: 1px solid #ccc;
-    h1 {
-        float: left;
-    }
+
     #nav {
-        float: right;
-        height: 38px;
+        width: auto;
+        margin: 0 auto;
+        text-align: center;
         &>ul>li {
             display: inline-block;
-            line-height: 38px;
+            margin: 10px 20px;
+
+            &>a {
+                text-decoration: none;
+                font-size: 18px;
+                font-family: '微软雅黑'
+            }
         }
     }
     &:after {
@@ -23,11 +28,14 @@ header {
 }
 
 .wrap {
+    width: 100%;
+    background-color: #ccc;
     .article {
+        display: inline-block;
         box-sizing: border-box;
-        width: 20%;
-        height: 300px;
-        margin: 10px auto;
+        width: 15%;
+        height: 200px;
+        margin: 10px;
         padding: 40px 0;
         overflow: hidden;
         border: 1px solid #ccc;
