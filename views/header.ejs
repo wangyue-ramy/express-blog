@@ -6,20 +6,16 @@
     <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
 <body>
-    <header>
+    <header class="shadow">
         <nav id="nav">
-            <ul>
-                <li><a href="/">home</a></li>
+            <a href="/"><span data-hover="首页">首页</span></a>
             <% if (user) { %>
-                <li><a href="/post">post</a></li>        
-                <li><a href="/logout">logout</a></li>
+                <a href="/post"><span data-hover="发表">发表</span></a>
+                <a href="/logout"><span data-hover="登出">登出</span></a>
             <% } else { %>
-                <li><a href="/login">login</a></li>
-                <li><a href="/reg">register</a></li>
+                <a href="/login"><span data-hover="登录">登录</span></a>
+                <a href="/reg"><span data-hover="注册">注册</span></a>
             <% } %>
-            </ul>
         </nav>
     </header>
 
-    <article>
-        <span><a href="/upload"></a></span>

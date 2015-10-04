@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
         }
         posts.forEach(function(post, index) {
             post.tags = post.tags ? post.tags.split(',') : [];
+            post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';
         });
         console.log(total, posts);
         var context = {

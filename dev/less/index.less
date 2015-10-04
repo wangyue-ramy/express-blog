@@ -1,49 +1,132 @@
 header {
     box-sizing: border-box;
-    width: 66%;
-    margin: 0 auto 10px;
-    padding: 10px 80px;
-    border-bottom: 1px solid #ccc;
-
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
     #nav {
-        width: auto;
-        margin: 0 auto;
+        height: 100%;
         text-align: center;
-        &>ul>li {
+        background-image: linear-gradient(to bottom, #5ea5ef, #0e83cd);
+        &>a {
             display: inline-block;
-            margin: 10px 20px;
-
-            &>a {
-                text-decoration: none;
-                font-size: 18px;
-                font-family: '微软雅黑'
+            color: #fff;
+            height: 100%;
+            width: 80px;
+            line-height: 50px;
+            font-size: 16px;
+            font-family: '微软雅黑';
+            -webkit-perspective: 800;
+            &>span {
+                position: relative;
+                display: inline-block;
+                width: 100%;
+                transform-origin: 50% 0;
+                transition: all .3s ease;
+                transform-style: preserve-3d;
+                &:after {
+                    content: attr(data-hover);
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transition: background .3s ease;
+                    transform: rotateX(-90deg);
+                    transform-origin: 50% 0;
+                }
+            }
+            &:hover {
+                &>span {
+                    transform: rotateX(90deg) translateY(-22px);
+                    &:after {
+                        background-color: #28a2ee;
+                    }
+                }
             }
         }
     }
+}
+
+.shadow {
+    background-color: #fff;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
     &:after {
         content: '';
-        display: block;
-        clear: both;
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        top: 50%;
+        z-index: -1;
+        background-color: #69c;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        border-radius: 350%/10px;
     }
 }
 
 .wrap {
-    width: 100%;
-    background-color: #ccc;
-    .article {
-        display: inline-block;
-        box-sizing: border-box;
-        width: 15%;
-        height: 200px;
-        margin: 10px;
-        padding: 40px 0;
-        overflow: hidden;
-        border: 1px solid #ccc;
+    width: 80%;
+    margin: 0 auto;
+    // .article-wrap, .tag-wrap, .date-wrap, .author-wrap {
+    //     box-sizing: border-box;
+    // }
+    .article-wrap {
+        width: 55%;
+        margin: 0 auto;
         border-radius: 5px;
-        box-shadow: 1px 1px 5px 1px #6c6f5f;
-        .title,
-        .info {
-            text-align: center;
+        .article {
+            margin-bottom: 20px;
+            height: 400px;
+            border: 1px solid #ccc;
+            position: relative;
+            .pic-wrap {
+                width: 100%;
+                height: 250px;
+                overflow: hidden;
+                .pic {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            .title,
+            .text,
+            .info {
+                width: 90%;
+                margin: 10px auto;
+            }
+            .title {}
+            .text {
+                font-size: 14px;
+            }
+            .info {
+                position: absolute;
+                font-size: 12px;
+                left: 5%;
+                bottom: 0px;
+            }
+            .more {
+                position: absolute;
+                right: 5%;
+                bottom: 10px;
+                font-size: 12px;
+            }
         }
     }
+    // .tag-wrap, .date-wrap, .author-wrap {
+    //     width: 20%;
+    //     height: 150px;
+    //     margin-left: 10%;
+    //     margin-bottom: 15px;
+    //     border: 1px solid #ccc;
+    //     float: left;
+    // }
+    // .author-wrap {
+    //     clear: both;
+    // }
+    // &:after {
+    //     display: block;
+    //     content: '';
+    //     clear: both;
+    // }
 }
