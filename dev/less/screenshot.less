@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.screenshot-wrap {
+    height: 500px;
+    width: 700px;
+    margin: 0 auto;
+    border: 2px solid #49708A;
+    position: relative;
+    padding: 50px;
+    overflow: hidden;
+}
+#overlay {
+    height: 200px;
+    width: 200px;
+    border: 2px solid #ccc;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    z-index: 999;
+    pointer-events: none;
+}
+#img {
+    width: auto;
+
+}
+
+.resize-container {
+    display: block;
+    cursor: move;
+    position: absolute;
+}
+
+.resize-container img {
+    display: block;
+}
+
+.resize-container:hover img {
+    outline: 2px dashed #49708A;
+}
+
+.resize-handle {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #49708A;
+}
+
+.resize-handle-nw {
+    left: -5px;
+    top: -5px;
+    cursor: nw-resize;
+}
+.resize-handle-ne {
+    right: -5px;
+    top: -5px;
+    cursor: ne-resize;
+}
+.resize-handle-sw {
+    left: -5px;
+    bottom: -5px;
+    cursor: sw-resize;
+}
+.resize-handle-se {
+    right: -5px;
+    bottom: -5px;
+    cursor: se-resize;
+}
+#btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}

@@ -42,6 +42,14 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/screenshot', function(req, res) {
+    res.render('screenshot', {
+        title: '裁剪',
+        user: req.session.user
+    });
+});
+
+
 router.get('/reg', checkNotLogin);
 router.get('/reg', function(req, res) {
     res.render('reg', {
@@ -157,8 +165,9 @@ router.get('/u/:name', function(req, res) {
             }
             posts.forEach(function(post, index) {
                 post.tags = post.tags ? post.tags.split(',') : [];
+                post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';
             });
-            res.render('user', {
+            res.render('index', {
                 title: user.username,
                 posts: posts,
                 user: req.session.user,
