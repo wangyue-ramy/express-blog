@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Comment = require('../models/comment.js');
+var fs = require('fs');
 
 /* GET home page. */
 function checkLoing(req, res, next) {
@@ -29,7 +30,6 @@ router.get('/', function(req, res) {
             post.tags = post.tags ? post.tags.split(',') : [];
             post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';
         });
-        console.log(total, posts);
         var context = {
             title: '主页',
             user: req.session.user,
@@ -96,6 +96,7 @@ router.post('/login', checkNotLogin);
 router.post('/login', function(req, res) {
     var name = req.body.name,
         password = req.body.password;
+    console.log(name, password, req.body);
     User.get(name, function(err, user) {
         user = user[0];
         if (!user) {
@@ -119,6 +120,9 @@ router.get('/post', function(req, res) {
 
 router.post('/post', checkLoing);
 router.post('/post', function(req, res) {
+
+
+    console.log(req.body, req.file);
     var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
     if (tags == ',,') {
         tags = null;
@@ -132,6 +136,7 @@ router.post('/post', function(req, res) {
     newPost.save(function() {
         return res.redirect('/');
     });
+
 });
 
 router.get('/logout', function(req, res) {
@@ -256,7 +261,6 @@ router.post('/edit/:name/:title', checkLoing);
 router.post('/edit/:name/:title', function(req, res) {
     var currentUser = req.session.user,
         text = req.body.text;
-    console.log(currentUser.username, req.params.name);
     Post.update(currentUser.username, req.params.title, text, function(error, result) {
         if (error) {
             console.log(error);

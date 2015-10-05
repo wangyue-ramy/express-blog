@@ -28,10 +28,10 @@ User.prototype.save = function(callback) {
 User.get = function(name, callback) {
     var query = 'SELECT * FROM users WHERE username=?';
     db.query(query, name, function(error, results, field) {
-        if (results.length > 0) {
-            callback(null, results);
+        if (error) {
+            console.log(error);
         } else {
-            callback(null, null);
+            callback(null, results);
         }
     });
 }

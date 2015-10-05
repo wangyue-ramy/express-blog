@@ -1,0 +1,112 @@
+.form {
+    width: 450px;
+    margin: 0 auto;
+    .form-header {
+        height: 40px;
+        box-sizing: border-box;
+        padding: 5px 20px;
+        background-color: #69c;
+        line-height: 30px;
+        color: #fff;
+        border-radius: 5px 5px 0 0;
+    }
+    .form-body {
+        padding: 30px 60px;
+        background-color: #dfdfdf;
+        border-radius: 0 0 5px 5px;
+        .form-row {
+            margin-bottom: 20px;
+            span {
+                font-size: 14px;
+                line-height: 30px;
+                height: 30px;
+                width: 15%;
+                margin-right: 5%;
+                white-space: nowrap;
+                float: left;
+            }
+            input {
+                box-sizing: border-box;
+                height: 30px;
+                width: 80%;
+                float: left;
+            }
+            &:after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+        }
+    }
+}
+
+.post {
+    width: 592px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    .post-header {
+        margin-bottom: 10px;
+        .title {
+            width: 100px;
+            height: 30px;
+            border: 1px solid #ddd;
+        }
+    }
+    .pic-wrap {
+        width: 592px;
+        height: 250px;
+        position: relative;
+        background-size: cover;
+        overflow: hidden;
+        z-index: 20;
+        #banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 10;
+        }
+        #file {
+            position: absolute;
+            z-index: 15;
+        }
+        &>.mask {
+            content: '';
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            #resized {
+                position: relative;
+                top: 200px;
+            }
+        }
+        &.edit {
+            outline: 2px solid #fff;
+            overflow: visible;
+            .mask {
+                display: block;
+            }
+            #banner:hover {
+                outline: 2px dashed #f00;
+                cursor: move;
+
+            }
+        }
+    }
+    .post-body {
+        .edit-body {
+            display: block;
+            width: 590px;
+            height: 300px;
+            margin: 0 auto;
+            border: 1px solid #aaa;
+            resize: none;
+        }
+    }
+}

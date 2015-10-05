@@ -1,13 +1,21 @@
 <%- include header %>
-<form action="post" method="post">
-    标题: <br>
-    <input type="text" name="title"><br>
-    <input type="text" name="tag1">
-    <input type="text" name="tag2">
-    <input type="text" name="tag3">
-    <br>
-    正文: <br>
-    <textarea name="post" id="" cols="30" rows="10"></textarea><br>
+<form action="/post" method="post" class="post" enctype="multipart/form-data">
+
+    <div class="post-header">
+        <input type="text" name="title" class="title" placeholder="标题">
+    </div>
+
+    <div class="pic-wrap">
+        <input type="file" id="file">
+        <img src="/images/1.jpg" alt="" id="banner">
+    </div>
+
+    <div class="post-body">
+        <div class="edit-header"></div>
+        <textarea name="post" id="" cols="30" rows="10" class="edit-body" placeholder="支持markdown编辑"></textarea><br>
+    </div>
     <input type="submit" value="发表">
 </form>
+<script type="text/javascript" src="/javascripts/upload.js"></script>
+
 <%- include footer %>
