@@ -4,6 +4,8 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var Comment = require('../models/comment.js');
 var fs = require('fs');
+var formidable = require('formidable');
+
 
 /* GET home page. */
 function checkLoing(req, res, next) {
@@ -92,6 +94,7 @@ router.get('/login', function(req, res) {
         user: req.session.user
     });
 });
+
 router.post('/login', checkNotLogin);
 router.post('/login', function(req, res) {
     var name = req.body.name,
@@ -121,21 +124,28 @@ router.get('/post', function(req, res) {
 router.post('/post', checkLoing);
 router.post('/post', function(req, res) {
 
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(error, fields, files) {
+        console.log(error, fields, files);
+        res.redirect('/post');
 
-    console.log(req.body, req.file);
-    var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
-    if (tags == ',,') {
-        tags = null;
-    }
-    var newPost = new Post({
-        name: req.session.user.username,
-        title: req.body.title,
-        post: req.body.post,
-        tags: tags,
     });
-    newPost.save(function() {
-        return res.redirect('/');
-    });
+
+
+
+    // var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
+    // if (tags == ',,') {
+    //     tags = null;
+    // }
+    // var newPost = new Post({
+    //     name: req.session.user.username,
+    //     title: req.body.title,
+    //     post: req.body.post,
+    //     tags: tags,
+    // });
+    // newPost.save(function() {
+    //     return res.redirect('/');
+    // });
 
 });
 

@@ -4,7 +4,7 @@ function upload() {
     var picWrap = document.getElementsByClassName('pic-wrap')[0];
     var banner = document.getElementById('banner');
     var mask = document.getElementsByClassName('mask')[0];
-    // file.addEventListener('change', preview);
+    file.addEventListener('change', preview);
     var state = {};
 
     function preview(e) {

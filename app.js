@@ -6,8 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
-var multer = require('multer');
-var formidable = require('formidable');
 
 var routes = require('./routes/index');
 // var users = require('./routes/users');
@@ -27,7 +25,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-// app.use(flash());
+app.use(flash());
 app.use(session({
     secret: 'wangyue'
 }));
