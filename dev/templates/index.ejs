@@ -5,6 +5,7 @@
         <% posts.forEach(function (post, index) { %>
             <div class="article shadow">
                 <div class="pic-wrap">
+                    <img src="<%= post.picDir %>" data-picTop="<%= post.picTop %>" alt="">
                 </div>
                 <h3 class="title">
                     <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>

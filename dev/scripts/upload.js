@@ -6,6 +6,7 @@ function upload() {
     var mask = document.getElementsByClassName('mask')[0];
     file.addEventListener('change', preview);
     var state = {};
+    var picTop = document.getElementById('pic-pos');
 
     function preview(e) {
         var reader = new FileReader();
@@ -32,6 +33,7 @@ function upload() {
     }
 
     function endMove(e) {
+        picTop.value = banner.offsetTop;
         document.removeEventListener('mousemove', moving, false);
         document.removeEventListener('mouseup', endMove, false);
     }

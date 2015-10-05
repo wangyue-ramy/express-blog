@@ -5,10 +5,11 @@ var Post = require('../models/post.js');
 var Comment = require('../models/comment.js');
 var fs = require('fs');
 var formidable = require('formidable');
+formidable.IncomingForm.UPLOAD_DIR = 'h:/';
 
 
 /* GET home page. */
-function checkLoing(req, res, next) {
+function checkLogin(req, res, next) {
     if (!req.session.user) {
         res.redirect('/login');
     }
@@ -28,6 +29,7 @@ router.get('/', function(req, res) {
         if (error) {
             posts = [];
         }
+        console.log(posts);
         posts.forEach(function(post, index) {
             post.tags = post.tags ? post.tags.split(',') : [];
             post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';
@@ -113,7 +115,7 @@ router.post('/login', function(req, res) {
     });
 });
 
-router.get('/post', checkLoing);
+router.get('/post', checkLogin);
 router.get('/post', function(req, res) {
     res.render('post', {
         title: '发表',
@@ -121,12 +123,21 @@ router.get('/post', function(req, res) {
     });
 });
 
-router.post('/post', checkLoing);
+router.post('/post', checkLogin);
 router.post('/post', function(req, res) {
 
     var form = new formidable.IncomingForm();
+
+    form.keepExtensions = true;
+
+
+    form.uploadDir = './';
+
     form.parse(req, function(error, fields, files) {
-        console.log(error, fields, files);
+        fs.rename(files.file.path, './public/images/' + files.file.name, function(error) {
+            console.log(fields);
+        });
+
         res.redirect('/post');
 
     });
@@ -154,7 +165,7 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-// router.get('/upload', checkLoing);
+// router.get('/upload', checkLogin);
 // router.get('/upload', function(req, res) {
 //     res.render('upload', {
 //         title: '文件上传',
@@ -162,7 +173,7 @@ router.get('/logout', function(req, res) {
 //     });
 // });
 
-// router.post('/upload', checkLoing);
+// router.post('/upload', checkLogin);
 // router.post('/upload', function(req, res) {
 //     res.redirect('/upload');
 // });
@@ -249,7 +260,7 @@ router.post('/u/:name/:title', function(req, res) {
     }
 });
 
-router.get('/edit/:name/:title', checkLoing);
+router.get('/edit/:name/:title', checkLogin);
 router.get('/edit/:name/:title', function(req, res) {
     var currentUser = req.session.user;
     Post.edit(currentUser.username, req.params.title, function(error, posts) {
@@ -267,7 +278,7 @@ router.get('/edit/:name/:title', function(req, res) {
     });
 });
 
-router.post('/edit/:name/:title', checkLoing);
+router.post('/edit/:name/:title', checkLogin);
 router.post('/edit/:name/:title', function(req, res) {
     var currentUser = req.session.user,
         text = req.body.text;
@@ -281,7 +292,7 @@ router.post('/edit/:name/:title', function(req, res) {
     });
 });
 
-router.get('/remove/:name/:title', checkLoing);
+router.get('/remove/:name/:title', checkLogin);
 router.get('/remove/:name/:title', function(req, res) {
     var currentUser = req.session.user,
         title = req.params.title;
