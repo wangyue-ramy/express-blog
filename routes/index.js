@@ -101,17 +101,30 @@ router.post('/login', function(req, res) {
     var name = req.body.name,
         password = req.body.password;
     User.get(name, function(err, user) {
+        console.log(user);
         user = user[0];
+        res.type('application/json');
         if (!user) {
-            return res.redirect('/login');
+            return res.send(JSON.stringify({
+                code: 1,
+                des: '用户名不存在',
+            }));
         }
         if (user.password != password) {
-            return res.redirect('/login');
+            return res.send(JSON.stringify({
+                code: 2,
+                des: '密码错误',
+            }));
         }
         req.session.user = user;
-        return res.redirect('/');
+        console.log('redirect');
+        return res.send(JSON.stringify({
+            code: 3,
+            redirect: '/',
+        }));
     });
 });
+
 
 router.get('/post', checkLogin);
 router.get('/post', function(req, res) {
@@ -147,7 +160,7 @@ router.post('/post', function(req, res) {
             });
             newPost.save(function() {
                 return res.redirect('/');
-            });       
+            });
         });
     });
 

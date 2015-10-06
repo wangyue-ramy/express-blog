@@ -15,7 +15,9 @@
         background-color: #dfdfdf;
         border-radius: 0 0 5px 5px;
         .form-row {
-            margin-bottom: 20px;
+            padding-bottom: 30px;
+            margin-bottom: 10px;
+            position: relative;
             span {
                 font-size: 14px;
                 line-height: 30px;
@@ -32,8 +34,11 @@
                 float: left;
             }
             &:after {
-                content: '';
-                display: block;
+                content: attr(prompt);
+                position: absolute;
+                right: 0;
+                bottom: 0px;
+                font-size: 12px;
                 clear: both;
             }
         }
