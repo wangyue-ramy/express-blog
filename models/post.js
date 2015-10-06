@@ -6,6 +6,8 @@ function Post(newPost) {
     this.title = newPost.title;
     this.post = newPost.post;
     this.tags = newPost.tags;
+    this.top = newPost.top;
+    this.dir = newPost.dir;
 }
 
 module.exports = Post;
@@ -15,11 +17,13 @@ Post.prototype.save = function(callback) {
         name: this.name,
         title: this.title,
         post: this.post,
-        tags: this.tags
+        tags: this.tags,
+        picTop: this.top,
+        picDir: this.dir,
     }
     console.log(post);
-    var query = 'INSERT articles (username, title, text, tags) VALUES(?, ?, ?, ?)';
-    db.query(query, [post.name, post.title, post.post, post.tags], function(error, results, field) {
+    var query = 'INSERT articles (username, title, text, tags, picTop, picDir) VALUES(?, ?, ?, ?, ?, ?)';
+    db.query(query, [post.name, post.title, post.post, post.tags, post.picTop, post.picDir], function(error, results, field) {
         if (error) {
             console.log(error);
         } else {

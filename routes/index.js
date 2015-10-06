@@ -29,7 +29,6 @@ router.get('/', function(req, res) {
         if (error) {
             posts = [];
         }
-        console.log(posts);
         posts.forEach(function(post, index) {
             post.tags = post.tags ? post.tags.split(',') : [];
             post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';
@@ -101,7 +100,6 @@ router.post('/login', checkNotLogin);
 router.post('/login', function(req, res) {
     var name = req.body.name,
         password = req.body.password;
-    console.log(name, password, req.body);
     User.get(name, function(err, user) {
         user = user[0];
         if (!user) {
@@ -135,28 +133,27 @@ router.post('/post', function(req, res) {
 
     form.parse(req, function(error, fields, files) {
         fs.rename(files.file.path, './public/images/' + files.file.name, function(error) {
-            console.log(fields);
+            // var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
+            // if (tags == ',,') {
+            //     tags = null;
+            // }
+            var newPost = new Post({
+                name: req.session.user.username,
+                title: fields.title,
+                post: fields.post,
+                tags: null,
+                top: fields.picTop,
+                dir: '/images/' + (files.file.name ? files.file.name : '1.jpg'),
+            });
+            newPost.save(function() {
+                return res.redirect('/');
+            });       
         });
-
-        res.redirect('/post');
-
     });
 
 
 
-    // var tags = [req.body.tag1, req.body.tag2, req.body.tag3].join(',');
-    // if (tags == ',,') {
-    //     tags = null;
-    // }
-    // var newPost = new Post({
-    //     name: req.session.user.username,
-    //     title: req.body.title,
-    //     post: req.body.post,
-    //     tags: tags,
-    // });
-    // newPost.save(function() {
-    //     return res.redirect('/');
-    // });
+
 
 });
 

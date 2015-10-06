@@ -6,7 +6,7 @@ function upload() {
     var mask = document.getElementsByClassName('mask')[0];
     file.addEventListener('change', preview);
     var state = {};
-    var picTop = document.getElementById('pic-pos');
+    var picTop = document.getElementById('picTop');
 
     function preview(e) {
         var reader = new FileReader();

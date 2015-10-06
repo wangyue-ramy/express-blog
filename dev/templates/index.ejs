@@ -5,7 +5,7 @@
         <% posts.forEach(function (post, index) { %>
             <div class="article shadow">
                 <div class="pic-wrap">
-                    <img src="<%= post.picDir %>" data-picTop="<%= post.picTop %>" alt="">
+                    <img src="<%= post.picDir %>" data-picTop="<%= post.picTop %>" alt="" class="banner">
                 </div>
                 <h3 class="title">
                     <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>
@@ -33,4 +33,6 @@
 </div>
 
 <%- include paging %>
+    <script type="text/javascript" src="/javascripts/bannerFormat.js"></script>
+
 <%- include footer %>
