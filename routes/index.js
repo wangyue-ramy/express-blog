@@ -67,7 +67,18 @@ router.post('/reg', function(req, res) {
         passwordCfm = req.body['password-confirm'],
         email = req.body.email;
     if (password != passwordCfm) {
-        return res.redirect('/reg');
+        res.type('application/json');
+        return res.send(JSON.stringify({
+            code: 1,
+            des: '两次密码不一致',
+        }));
+    }
+    if (name.length < 6) {
+        res.type('application/json');
+        return res.send(JSON.stringify({
+            code: 2,
+            des: '用户名太短',
+        }));
     }
     var newUser = new User({
         name: name,
@@ -75,15 +86,23 @@ router.post('/reg', function(req, res) {
         email: email
     });
     User.get(newUser.name, function(err, user) {
-        if (user) {
-            return res.redirect('/reg');
+        if (user.length > 0) {
+            res.type('application/json');
+            return res.send(JSON.stringify({
+                code: 3,
+                des: '该用户已经注册'
+            }));
         }
         newUser.save(function(err, user) {
             if (err) {
                 return res.redirect('/reg');
             }
             req.session.user = user;
-            res.redirect('/');
+            res.type('application/json');
+            return res.send(JSON.stringify({
+                code: 4,
+                redirect: '/'
+            }));
         });
     });
 });
