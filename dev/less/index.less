@@ -66,12 +66,10 @@ header {
     }
 }
 
-.wrap {
+.wrap, .single-wrap {
     width: 80%;
     margin: 0 auto;
-    // .article-wrap, .tag-wrap, .date-wrap, .author-wrap {
-    //     box-sizing: border-box;
-    // }
+
     .article-wrap {
         width: 55%;
         margin: 0 auto;
@@ -90,9 +88,10 @@ header {
                     position: absolute;
                     width: 100%;
                     height: auto;
-                    transition: all .4s ease-out .0s;
+                    transition: all .6s ease-out .0s;
                     &:hover {
-                        transform: scale(1.1) rotate(5deg);
+                        width: 104%;
+                        height: auto;
                     }
                 }
             }
@@ -120,20 +119,18 @@ header {
             }
         }
     }
-    // .tag-wrap, .date-wrap, .author-wrap {
-    //     width: 20%;
-    //     height: 150px;
-    //     margin-left: 10%;
-    //     margin-bottom: 15px;
-    //     border: 1px solid #ccc;
-    //     float: left;
-    // }
-    // .author-wrap {
-    //     clear: both;
-    // }
-    // &:after {
-    //     display: block;
-    //     content: '';
-    //     clear: both;
-    // }
+}
+
+.single-wrap {
+    .article-wrap {
+        width: 80%;
+        .article {
+            height: auto;
+            .info {
+                height: 20px;
+                width: auto;
+                position: relative;
+            }
+        }
+    }
 }

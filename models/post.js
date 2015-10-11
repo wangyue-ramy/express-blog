@@ -33,8 +33,8 @@ Post.prototype.save = function(callback) {
 }
 
 Post.get = function(name, page, callback) {
-    var start = (page - 1) * 10;
-    var query = 'SELECT * FROM articles ' + (name ? 'WHERE username=? ' : '') + 'LIMIT ?,10;';
+    var start = (page - 1) * 12;
+    var query = 'SELECT * FROM articles ' + (name ? 'WHERE username=? ' : '') + 'LIMIT ?,12;';
     var arr = name ? [name, start] : [start];
     db.query(query, arr, function(error, posts, field) {
         if (error) {

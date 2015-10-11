@@ -29,6 +29,7 @@ router.get('/', function(req, res) {
         if (error) {
             posts = [];
         }
+        console.log(posts);
         posts.forEach(function(post, index) {
             post.tags = post.tags ? post.tags.split(',') : [];
             post.text = post.text.replace(/<\/?p>/g, '').slice(0, 100) + '...';

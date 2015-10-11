@@ -1,26 +1,30 @@
 <%- include header %>
 
-<% posts.forEach(function(post, index) { %>
-    <p>
-        <% if (user && user.username == post.username) { %>
-            <a href="/edit/<%= post.username %>/<%= post.title %>" class="edit">编辑</a>
-            <a href="/remove/<%= post.username %>/<%= post.title %>" class="edit">删除</a>
-        <% } %>
-    </p>
-    <p class="info">
-        作者: <a href="/u/<%= post.username %>"><%= post.username %></a>
-        日期: <%= post.time.toISOString().slice(0, 10) %>
-        <% if (post.tags.length > 0) { %>
-            标签:
-        <% } %>
-        <% post.tags.forEach(function(tag, index) { %>
-            <a class="tag" href="/tag/<%= tag %>"><%= tag %></a>
+<div class="single-wrap">
+    <div class="article-wrap">
+        <% posts.forEach(function (post, index) { %>
+            <div class="article shadow">
+                <div class='edit-box'>
+                    <% if (user && user.username == post.username) { %>
+                        <a href="/edit/<%= post.username %>/<%= post.title %>" class="edit">编辑</a>
+                        <a href="/remove/<%= post.username %>/<%= post.title %>" class="edit">删除</a>
+                    <% } %>
+                </div>
+                <div class="pic-wrap">
+                    <img src="<%= post.picDir %>" data-picTop="<%= post.picTop %>" alt="" class="banner">
+                </div>
+                <h3 class="title">
+                    <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>
+                </h3>
+                <div class="info">
+                    <span class="author">作者: <a href="/u/<%= post.username %>"><%= post.username %></a></span>
+                    <span class="date">日期: <%= post.time.toISOString().slice(0, 10) %></span>
+                    <span class="pv">共浏览了: <%= post.pv %></span>
+                </div>
+                <div class="text"><%- post.text %></div>
+            </div>
         <% }) %>
-        共浏览了: <%= post.pv %>次
-    </p>
-
-    <p><%- post.text %></p>
-<% }) %>
-
+    </div>
+</div>
 <%- include comment %>
 <%- include footer %>
