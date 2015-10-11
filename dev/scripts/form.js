@@ -5,7 +5,6 @@
     if (loginBtn) {
         loginBtn.addEventListener('click', login);
     }
-
     if (regBtn) {
         regBtn.addEventListener('click', register);
     }
@@ -46,20 +45,23 @@
 
     function login(e) {
         e.preventDefault();
-        var data = JSON.stringify(serialize(this.form));
         var formRow = document.getElementsByClassName('form-row');
-        ajax('post', '/login', data, function(text) {
-            switch (text.code) {
+        var data = serialize(this.form);
+        var promise = new Promise(function(resolve, reject) {
+            ajax('post', '/login', data, resolve);
+        });
+        promise.then(function onFulfilled(value) {
+            switch (value.code) {
                 case 1:
-                    formRow[0].setAttribute('prompt', text.des);
+                    formRow[0].setAttribute('prompt', value.des);
                     formRow[1].setAttribute('prompt', '');
                     break;
                 case 2:
-                    formRow[1].setAttribute('prompt', text.des);
+                    formRow[1].setAttribute('prompt', value.des);
                     formRow[0].setAttribute('prompt', '');
                     break;
                 default:
-                    window.location.replace(window.location.protocol + '//' + window.location.host + text.redirect);
+                    window.location.replace(window.location.protocol + '//' + window.location.host + value.redirect);
             }
         });
     }
@@ -102,14 +104,14 @@
 
 })();
 
-function ajax(method, url, data, callback) {
+function ajax(method, url, data, resolve) {
     var xhr = new XMLHttpRequest();
+    data = JSON.stringify(data);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
-            callback(JSON.parse(xhr.responseText));
-            xhr = null;
+            resolve(JSON.parse(xhr.responseText));
         }
-    }
+    };
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(data);
