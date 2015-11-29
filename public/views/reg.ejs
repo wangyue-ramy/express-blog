@@ -1,0 +1,29 @@
+<%- include header %>
+<form action="" method="post" class="form shadow">
+    <div class="form-header">
+        注册
+    </div>
+    <div class="form-body">
+        <div class="form-row">
+            <span>用户名:</span>
+            <input type="text" name="name">
+        </div>
+        <div class="form-row">
+            <span>密码:</span>
+            <input type="password" name="password">
+        </div>
+        <div class="form-row">
+            <span>再次输入:</span>
+            <input type="password" name="password-confirm">
+        </div>
+        <div class="form-row">
+            <span>邮箱:</span>
+            <input type="email" name="email">
+        </div>
+        <input type="submit" value="注册" id="register">
+    </div>
+    <div class="form-footer"></div>
+</form>
+<script type="text/javascript" src="javascripts/init.js"></script>
+<script type="text/javascript" src="javascripts/form.js"></script>
+<%- include footer %>

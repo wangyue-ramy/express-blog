@@ -1,0 +1,17 @@
+<%- include header %>
+<form method="post" id="login-form" class="form shadow">
+    <div class="form-header">登录</div>
+    <div class="form-body">
+        <div class="form-row" prompt="">
+            <span>账号:</span><input type="text" name="name"><br>
+        </div>
+        <div class="form-row" prompt="">
+            <span>密码:</span><input type="password" name="password"><br>
+        </div>
+        <div class="prompt"></div>       
+        <input type="submit" id="login">
+    </div>
+    <div class="form-footer"></div>
+</form>
+<script type="text/javascript" src="javascripts/form.js"></script>
+<%- include footer %>

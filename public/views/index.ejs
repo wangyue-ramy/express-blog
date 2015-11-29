@@ -1,0 +1,35 @@
+<%- include header %>
+
+<div class="wrap">
+    <div class="article-wrap">
+        <% posts.forEach(function (post, index) { %>
+            <div class="article shadow">
+                <div class="pic-wrap">
+                    <img src="<%= post.picDir %>" data-picTop="<%= post.picTop %>" alt="" class="banner">
+                </div>
+                <h3 class="title">
+                    <a href="/u/<%= post.username %>/<%= post.title %>"><%= post.title %></a>
+                </h3>
+                <div class="text"><%- post.text %></div>
+                <div class="info">
+                    <span class="author">作者: <a href="/u/<%= post.username %>"><%= post.username %></a></span>
+                    <span class="date">日期: <%= post.time.toISOString().slice(0, 10) %></span>
+                    <% if (post.tags.length > 0) { %>
+                        <span class="tags">
+                            标签:
+                            <% post.tags.forEach(function(tag, index) { %>
+                                <a class="tag" href="/tag/<%= tag %>"><%= tag %></a>
+                            <% }) %>
+                        </span>
+                    <% } %>
+                </div>
+                <a href="/u/<%= post.username %>/<%= post.title %>" class="more">阅读全文</a>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include paging %>
+    <script type="text/javascript" src="/javascripts/bannerFormat.js"></script>
+
+<%- include footer %>

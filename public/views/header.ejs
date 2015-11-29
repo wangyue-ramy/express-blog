@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body>
+    <header class="shadow">
+        <nav id="nav">
+            <a href="/"><span data-hover="首页">首页</span></a>
+            <% if (user) { %>
+                <a href="/post"><span data-hover="发表">发表</span></a>
+                <a href="/logout"><span data-hover="登出">登出</span></a>
+            <% } else { %>
+                <a href="/login"><span data-hover="登录">登录</span></a>
+                <a href="/reg"><span data-hover="注册">注册</span></a>
+            <% } %>
+            <a href="/screenshot"><span data-hover="裁剪">裁剪</span></a>
+        </nav>
+    </header>
+
