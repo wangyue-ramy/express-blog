@@ -10,7 +10,7 @@ function pageInit() {
         for (var i = 0; i < rows.length; i++) {
             rows[i].setAttribute('prompt', '');
         }
-    }
+    };
     bannerInit();
     formInit();
 }
